@@ -1,1 +1,1 @@
-# 1.1 Course Information
+# Exercises 1.1-1.5 Course Information
