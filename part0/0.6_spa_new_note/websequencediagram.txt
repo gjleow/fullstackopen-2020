@@ -1,0 +1,12 @@
+title New Note (Single Page App) 
+
+note over browser:
+The form event handler 
+creates a new note and 
+rerenders the note list on the page 
+before sending 
+the new note to 
+persist on the server
+end note
+browser->server: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+server-->browser: HTML-code 201 (Created)
