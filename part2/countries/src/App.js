@@ -16,7 +16,6 @@ function App() {
 
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
-    console.log(filteredCountries);
     setFilteredCountries(
       countries.filter((country) =>
         country.name.toLowerCase().includes(event.target.value.toLowerCase())

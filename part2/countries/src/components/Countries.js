@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Country = ({ country }) => {
   const countryFlag = `${country.name} flag`;
-
   return (
     <>
       <h2>{country.name}</h2>
@@ -21,15 +20,28 @@ const Country = ({ country }) => {
 
 const Countries = ({ filteredCountries }) => {
   let numCountry = filteredCountries.length;
+
+  const [showArray, setShowArray] = useState(Array(numCountry).fill(false));
+  const handleOnClick = (index) => {
+    let newArray = [...showArray];
+    newArray[index] = !newArray[index];
+    setShowArray(newArray);
+  };
+
   if (numCountry < 10 && numCountry > 0) {
-    console.log(numCountry === 1);
     if (numCountry === 1) {
       return <Country country={filteredCountries[0]} />;
     } else {
       return (
         <ul>
           {filteredCountries.map((country, index) => (
-            <li key={index}>{country.name}</li>
+            <li key={index}>
+              {country.name}{" "}
+              <button onClick={() => handleOnClick(index)} key={index}>
+                {showArray[index] ? "hide" : "show"}
+              </button>
+              {showArray[index] ? <Country country={country} /> : null}
+            </li>
           ))}
         </ul>
       );
