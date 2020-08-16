@@ -1,4 +1,4 @@
-# Exercises 2.6-2.11, 2.15-2.18 Phonebook
+# Exercises 2.6-2.11, 2.15-2.20 Phonebook
 
 - [x] 2.6 phonebook step1
 - [x] 2.7 phonebook step2
