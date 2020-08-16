@@ -19,9 +19,18 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault();
     if (persons.map((p) => p.name).indexOf(newName) === -1) {
-      setPersons(persons.concat({ name: newName, number: newNumber }));
-      setNewName("");
-      setNewNumber("");
+      const newContact = {
+        name: newName,
+        number: newNumber,
+      };
+
+      axios
+        .post("http://localhost:3001/persons", newContact)
+        .then((response) => {
+          setPersons(persons.concat(response.data));
+          setNewName("");
+          setNewNumber("");
+        });
     } else {
       window.alert(`${newName} is already added to phonebook`);
     }
