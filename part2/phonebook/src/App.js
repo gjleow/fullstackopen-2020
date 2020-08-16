@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Contacts from "./components/Contacts";
 import Filter from "./components/Filter";
 import ContactForm from "./components/ContactForm";
+import Notification from "./components/Notification";
 import personService from "./services/persons";
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filteredName, setfilteredName] = useState("");
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     personService.getAll().then((initialPersons) => setPersons(initialPersons));
@@ -25,6 +27,10 @@ const App = () => {
         setPersons(persons.concat(returnContact));
         setNewName("");
         setNewNumber("");
+        setMessage(returnContact.name);
+        setTimeout(() => {
+          setMessage(null);
+        }, 1000);
       });
     } else {
       const existingContact = persons.find((person) => person.name === newName);
@@ -39,10 +45,10 @@ const App = () => {
           const changedContact = { ...existingContact, number: newNumber };
           personService
             .update(changedContact.id, changedContact)
-            .then((returnedContact) => {
+            .then((returnContact) => {
               setPersons(
                 persons.map((person) =>
-                  person.id !== returnedContact.id ? person : returnedContact
+                  person.id !== returnContact.id ? person : returnContact
                 )
               );
               setNewName("");
@@ -76,6 +82,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter value={filteredName} onChange={handleFilterChange} />
       <h3>add a new</h3>
       <ContactForm
