@@ -11,11 +11,20 @@ const Notification = ({ message }) => {
     marginBottom: "10px",
   };
 
+  const errorStyle = {
+    ...baseStyle,
+    color: "red",
+  };
+
   if (message === null) {
     return null;
   }
 
-  return <div style={baseStyle}>{message}</div>;
+  if (message.type === "base") {
+    return <div style={baseStyle}>{message.text}</div>;
+  } else {
+    return <div style={errorStyle}>{message.text}</div>;
+  }
 };
 
 export default Notification;

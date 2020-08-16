@@ -27,10 +27,10 @@ const App = () => {
         setPersons(persons.concat(returnContact));
         setNewName("");
         setNewNumber("");
-        setMessage(returnContact.name);
+        setMessage({ text: `Added ${returnContact.name}`, type: "base" });
         setTimeout(() => {
           setMessage(null);
-        }, 1000);
+        }, 2000);
       });
     } else {
       const existingContact = persons.find((person) => person.name === newName);
@@ -53,6 +53,15 @@ const App = () => {
               );
               setNewName("");
               setNewNumber("");
+            })
+            .catch((error) => {
+              setMessage({
+                text: `Information of ${newName} has already been removed from server`,
+                type: "error",
+              });
+              setTimeout(() => {
+                setMessage(null);
+              }, 2000);
             });
         }
       }
