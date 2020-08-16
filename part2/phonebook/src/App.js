@@ -27,7 +27,29 @@ const App = () => {
         setNewNumber("");
       });
     } else {
-      window.alert(`${newName} is already added to phonebook`);
+      const existingContact = persons.find((person) => person.name === newName);
+      if (existingContact.number === newNumber) {
+        window.alert(`${newName} is already added to phonebook`);
+      } else {
+        if (
+          window.confirm(
+            `${newName} is already added to phonebook, replace the old number with a new one?`
+          )
+        ) {
+          const changedContact = { ...existingContact, number: newNumber };
+          personService
+            .update(changedContact.id, changedContact)
+            .then((returnedContact) => {
+              setPersons(
+                persons.map((person) =>
+                  person.id !== returnedContact.id ? person : returnedContact
+                )
+              );
+              setNewName("");
+              setNewNumber("");
+            });
+        }
+      }
     }
   };
 
