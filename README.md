@@ -17,3 +17,10 @@
 - [2.1-2.5 courseinfo](/part2/courseinfo)
 - [2.6-2.11, 2.15-2.20 phonebook](/part2/phonebook)
 - [2.12-2.14 countries](/part2/countries)
+
+## [part3](https://github.com/gjleow/fullstackopen-2020-part3)
+- [3.1-3.22 phonebook](https://github.com/gjleow/fullstackopen-2020-part3)
+- [Link to phonebook app](https://glacial-meadow-91363.herokuapp.com/)
+
+## [part4](/part4)
+- [3.1-3.22 blog](/part4/blog)
