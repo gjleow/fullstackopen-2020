@@ -23,15 +23,23 @@ const App = () => {
         name: newName,
         number: newNumber,
       };
-      personService.create(newContact).then((returnContact) => {
-        setPersons(persons.concat(returnContact));
-        setNewName("");
-        setNewNumber("");
-        setMessage({ text: `Added ${returnContact.name}`, type: "base" });
-        setTimeout(() => {
-          setMessage(null);
-        }, 2000);
-      });
+      personService
+        .create(newContact)
+        .then((returnContact) => {
+          setPersons(persons.concat(returnContact));
+          setNewName("");
+          setNewNumber("");
+          setMessage({ text: `Added ${returnContact.name}`, type: "base" });
+          setTimeout(() => {
+            setMessage(null);
+          }, 2000);
+        })
+        .catch((error) => {
+          setMessage({ text: `${error.response.data.error}`, type: "error" });
+          setTimeout(() => {
+            setMessage(null);
+          }, 2000);
+        });
     } else {
       const existingContact = persons.find((person) => person.name === newName);
       if (existingContact.number === newNumber) {
@@ -56,7 +64,7 @@ const App = () => {
             })
             .catch((error) => {
               setMessage({
-                text: `Information of ${newName} has already been removed from server`,
+                text: `${error.response.data.error}`,
                 type: "error",
               });
               setTimeout(() => {
