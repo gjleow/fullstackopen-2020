@@ -1,10 +1,10 @@
-const http = require('http');
 const express = require('express');
 
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./utils/config');
+const logger = require('./utils/logger');
 
 const blogSchema = new mongoose.Schema({
   title: String,
@@ -41,6 +41,5 @@ app.post('/api/blogs', (request, response) => {
 
 const PORT = config.PORT || 3003;
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server running on port ${PORT}`);
+  logger.info(`Server running on port ${PORT}`);
 });
