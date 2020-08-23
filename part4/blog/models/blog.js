@@ -2,6 +2,8 @@
 /* eslint-disable no-underscore-dangle */
 const mongoose = require('mongoose');
 
+mongoose.set('useFindAndModify', false);
+
 const blogSchema = new mongoose.Schema({
   title: { type: String, required: true },
   author: String,
