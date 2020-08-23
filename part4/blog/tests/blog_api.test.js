@@ -73,6 +73,30 @@ test('a new blog without likes default to 0', async () => {
   expect(response.body.likes).toBe(0);
 });
 
+test('bad request if title is missing for new blog', async () => {
+  const newBlog = {
+    author: 'Edsger W. Dijkstra',
+    url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+  };
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400);
+});
+
+test('bad request if url is missing for new blog', async () => {
+  const newBlog = {
+    author: 'Edsger W. Dijkstra',
+    title: 'Go To Statement Considered Harmful',
+  };
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400);
+});
+
 afterAll(() => {
   mongoose.connection.close();
 });
