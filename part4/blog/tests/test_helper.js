@@ -1,4 +1,5 @@
 const Blog = require('../models/blog');
+const User = require('../models/user');
 
 const initialBlogs = [{
   _id: '5a422a851b54a676234d17f7', title: 'React patterns', author: 'Michael Chan', url: 'https://reactpatterns.com/', likes: 7, __v: 0,
@@ -20,11 +21,16 @@ const blogsInDb = async () => {
   return blogs.map((blog) => blog.toJSON());
 };
 
+const usersInDb = async () => {
+  const users = await User.find({});
+  return users.map((user) => user.toJSON());
+};
+
 const getBlogInDbById = async (id) => {
   const blog = await Blog.findById(id);
   return blog.toJSON();
 };
 
 module.exports = {
-  initialBlogs, blogsInDb, getBlogInDbById,
+  initialBlogs, blogsInDb, getBlogInDbById, usersInDb,
 };
