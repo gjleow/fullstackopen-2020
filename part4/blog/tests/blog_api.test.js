@@ -122,6 +122,29 @@ describe('deletion of a blog', () => {
   });
 });
 
+describe('update of blog', () => {
+  test('a valid blog can be updated ', async () => {
+    const updatedBlog = {
+      title: 'Go To Statement Considered Harmful',
+      author: 'Edsger W. Dijkstra',
+      url: 'http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html',
+      likes: 10,
+    };
+
+    const response = await api
+      .put('/api/blogs/5a422b891b54a676234d17fa')
+      .send(updatedBlog)
+      .expect(200)
+      .expect('Content-Type', /application\/json/);
+
+    const updatedblogInDb = await helper.getBlogInDbById('5a422b891b54a676234d17fa');
+    expect(updatedblogInDb).toEqual({
+      ...updatedBlog,
+      id: '5a422b891b54a676234d17fa',
+    });
+  });
+});
+
 afterAll(() => {
   mongoose.connection.close();
 });
