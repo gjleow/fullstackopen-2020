@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const expressJwt = require('express-jwt');
 
 const app = express();
 const blogsRouter = require('./controllers/blogs');
@@ -25,8 +26,19 @@ app.use(express.static('build'));
 app.use(express.json());
 app.use(middleware.requestLogger);
 
-app.use('/api/users', usersRouter);
-app.use('/api/blogs', blogsRouter);
+const jwtMiddleWare = expressJwt(
+  {
+    secret: config.SECRET,
+    algorithms: ['HS256'],
+  },
+).unless({
+  path: [
+    { url: '/api/users', methods: ['POST'] },
+  ],
+});
+
+app.use('/api/users', jwtMiddleWare, usersRouter);
+app.use('/api/blogs', jwtMiddleWare, blogsRouter);
 app.use('/api/login', loginRouter);
 
 app.use(middleware.unknownEndpoint);
