@@ -5,5 +5,6 @@ content-type: application/json
   "title": "Canonical string reduction",
   "author": "Edsger W. Dijkstra",
   "url": "www.google.com",
-  "likes": 12
+  "likes": 12,
+  "user_id": "5f4437d999fe536a8de9cc1d"
 }

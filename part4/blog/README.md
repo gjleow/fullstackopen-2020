@@ -15,8 +15,8 @@
 - [x] 4.13 Blog list expansions, step1
 - [x] 4.14 Blog list expansions, step2
 - [x] 4.15 Blog list expansions, step3
-- [ ] 4.16 Blog list expansions, step4
-- [ ] 4.17 Blog list expansions, step5
+- [x] 4.16 Blog list expansions, step4
+- [x] 4.17 Blog list expansions, step5
 - [ ] 4.18 Blog list expansions, step6
 - [ ] 4.19 Blog list expansions, step7
 - [ ] 4.20 Blog list expansions, step8
