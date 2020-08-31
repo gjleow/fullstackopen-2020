@@ -23,4 +23,4 @@
 - [Link to phonebook app](https://glacial-meadow-91363.herokuapp.com/)
 
 ## [part4](/part4)
-- [3.1-3.22 blog](/part4/blog)
+- [4.1-4.22 blog](/part4/blog)
